@@ -5,7 +5,6 @@
     "dark": "/logo/dark.svg",
     "light": "/logo/light.svg"
   },
-  "theme": "venus",
   "metadata": {
     "og:image": "https://docs.mypinata.cloud/ipfs/bafybeibj3a47gxdgkjfrfs6b2n3prsjbvk2lx3twp4lfahgcrfddkxukwu?filename=og.png",
     "twitter:image": "https://docs.mypinata.cloud/ipfs/bafybeibj3a47gxdgkjfrfs6b2n3prsjbvk2lx3twp4lfahgcrfddkxukwu?filename=og.png",
@@ -27,10 +26,6 @@
     }
   },
   "topbarLinks": [
-    {
-      "name": "Provide Feedback",
-      "url": "https://tally.so/r/mRz0ap"
-    },
     {
       "name": "Support",
       "url": "mailto:team@pinata.cloud"
@@ -83,17 +78,17 @@
             "quickstart/react",
             "quickstart/node-js"
           ]
+        },
+        {
+          "group": "Account Management",
+          "pages": [
+            "account-management/api-keys",
+            "account-management/workspaces",
+            "account-management/farcaster",
+            "account-management/billing",
+            "account-management/limits"
+          ]
         }
-      ]
-    },
-    {
-      "group": "Account Management",
-      "pages": [
-        "account-management/api-keys",
-        "account-management/workspaces",
-        "account-management/farcaster",
-        "account-management/billing",
-        "account-management/limits"
       ]
     },
     {
@@ -110,7 +105,6 @@
       "group": "Pinning",
       "pages": [
         "pinning/pinning-files",
-        "pinning/groups",
         "pinning/listing-files",
         "pinning/pinata-metadata",
         "pinning/deleting-files"
@@ -143,18 +137,6 @@
       ]
     },
     {
-      "group": "Groups",
-      "pages": [
-        "api-reference/endpoint/create-group",
-        "api-reference/endpoint/get-a-group",
-        "api-reference/endpoint/list-groups",
-        "api-reference/endpoint/update-group",
-        "api-reference/endpoint/add-cids-to-group",
-        "api-reference/endpoint/remove-cids-from-a-group",
-        "api-reference/endpoint/delete-group"
-      ]
-    },
-    {
       "group": "Pinning by CID",
       "pages": [
         "api-reference/endpoint/pin-by-cid",
@@ -167,15 +149,7 @@
       "pages": [
         "api-reference/endpoint/generate-pinata-api-key",
         "api-reference/endpoint/list-api-keys",
-        "api-reference/endpoint/revoke-api-key",
-        {
-          "group": "V3 (beta)",
-          "pages": [
-            "api-reference/endpoint/v3-create-api-key",
-            "api-reference/endpoint/v3-list-api-keys",
-            "api-reference/endpoint/v3-revoke-api-key"
-          ]
-        }
+        "api-reference/endpoint/revoke-api-key"
       ]
     },
     {
@@ -194,7 +168,6 @@
         "farcaster/introduction",
         "farcaster/farcaster-auth",
         "farcaster/farcaster-API",
-        "farcaster/image-uploads",
         "farcaster/frames",
         "farcaster/hubs",
         "farcaster/fc-dev-calls/index"
@@ -209,7 +182,6 @@
             "farcaster/fdk/getting-started",
             "farcaster/fdk/farcaster-auth",
             "farcaster/fdk/farcaster-writes",
-            "farcaster/fdk/farcaster-reads",
             "farcaster/fdk/farcaster-frames"
           ]
         }
@@ -238,6 +210,7 @@
       "pages": [
         "farcaster/farcaster-api/auth-getting-started",
         "farcaster/farcaster-api/endpoint/signers",
+        "farcaster/farcaster-api/endpoint/sponsored-signers",
         "farcaster/farcaster-api/endpoint/register-signer-with-warpcast",
         "farcaster/farcaster-api/endpoint/poll-warpcast-signer",
         "farcaster/farcaster-api/endpoint/get-signers"
@@ -352,19 +325,11 @@
     },
     {
       "source": "/frameworks",
-      "destination": "/farcaster/events/frameworks"
+      "destination": "/events/frameworks"
     },
     {
       "source": "/farcaster/fdk",
       "destination": "/farcaster/fdk/getting-started"
-    },
-    {
-      "source": "/farhack",
-      "destination": "farcaster/events/farhack"
-    },
-    {
-      "source": "/events/frameworks",
-      "destination": "farcaster/events/frameworks"
     }
   ]
 }
