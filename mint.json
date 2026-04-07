@@ -69,6 +69,12 @@
   ],
   "navigation": [
     {
+      "group": "True Alpha Spiral",
+      "pages": [
+        "true-alpha-spiral/prime-invariant-document"
+      ]
+    },
+    {
       "group": "Get Started",
       "pages": [
         "quickstart",
