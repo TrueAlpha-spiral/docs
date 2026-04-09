@@ -69,6 +69,12 @@
   ],
   "navigation": [
     {
+      "group": "Architectural Manifest",
+      "pages": [
+        "true-alpha-spiral/prime-invariant-document-A0"
+      ]
+    },
+    {
       "group": "Get Started",
       "pages": [
         "quickstart",
