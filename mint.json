@@ -87,6 +87,12 @@
       ]
     },
     {
+      "group": "Architecture Manifest",
+      "pages": [
+        "architecture/prime-invariant-a0"
+      ]
+    },
+    {
       "group": "Account Management",
       "pages": [
         "account-management/api-keys",
