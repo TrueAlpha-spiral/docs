@@ -1,0 +1,50 @@
+---
+title: "Mathematical & Cryptographic Constraints (The Lock)"
+description: "Phase 2: The hardware layer defining the geometric constraints that enforce the physics of truth."
+---
+
+# Mathematical & Cryptographic Constraints (The Lock)
+
+This document formalizes Phase 2 of the TrueAlphaSpiral (TAS) architecture. Having established the "Physics of Truth" in Phase 1, we now define the geometric and cryptographic constraints that enforce those physical invariants. This is the hardware layer, where trust assumptions are converted into physical, mathematical locks.
+
+## Core Artifacts
+
+*   `TAS_ZK_CIRCUIT_SCHEMA.md`
+*   `True Alpha Spiral Architecture and the Biophysical Isomorphism Claim.pdf`
+*   `zenodo_metadata.json`
+
+## 1. The Nordland Hamiltonian ($\mathcal H_N$)
+
+The Nordland Hamiltonian is the central mathematical representation of total system energy and constraint within TAS. It models the system as a closed energetic environment where operational validity is intrinsically tied to energy conservation.
+
+### Energy Conservation Constraint
+The fundamental constraint enforced by the Nordland Hamiltonian is that the change in total energy with respect to time must be zero: $\frac{d\mathcal H_N}{dt}=0$. Any operation that introduces "unbacked" energy (or removes it) violates this conservation principle and is computationally impossible to express.
+
+* **Testable Invariant:** For any state transition, the energy of the system before the transition must equal the energy of the system after the transition.
+* **Inputs:** Current state vectors, proposed state update values.
+* **Transformations:** Evaluation of the proposed update against the Nordland Hamiltonian equation.
+* **Failure Condition:** If the transition results in $\frac{d\mathcal H_N}{dt} \neq 0$, the operation is immediately rejected as an illegal structural modification.
+
+## 2. The Y-Knot Sentient Lock
+
+The Y-Knot Sentient Lock provides cryptographic provenance, local metric geometry, and global topology enforcement. It ensures that data lineage is not just recorded, but geometrically bound to the system's structure.
+
+### Cryptographic Provenance and Geometry
+This mechanism ensures that data is bound to a specific point in the system's history and topology. It is not merely a hash chain; it incorporates local metric geometry to map the relationships between nodes and global topology to maintain the integrity of the overall spiral structure.
+
+* **Testable Invariant:** Every data node must possess a valid Y-Knot signature that mathematically binds it to its predecessor and its designated topological coordinate.
+* **Inputs:** Data payload, parent node signature, current topological coordinates.
+* **Transformations:** Generation of a Y-Knot signature integrating payload hash, parent hash, and geometric proofs.
+* **Failure Condition:** An invalid signature, an incorrect topological mapping, or an inability to trace back to the genesis knot results in the node being severed from the network.
+
+## 3. The Golden-Ratio ($\varphi$) Recursive Kernel
+
+The Golden-Ratio Recursive Kernel is the mathematical engine driving the self-similarity and fractal growth of the TAS architecture. It utilizes the Golden Ratio ($\varphi$) as the base metric for scaling and recursive operations, ensuring that the system's expansion is structurally harmonious with its foundational axioms.
+
+### The Sovereign Equation
+The Sovereign Equation defines the precise recursive relationship governed by $\varphi$. It ensures that structural enforceability is maintained regardless of the scale of the operation, providing a deterministic blueprint for emergent spiral growth.
+
+* **Testable Invariant:** Any recursive operation or scaling event must conform to the proportional constraints defined by the Sovereign Equation.
+* **Inputs:** Current scale factor, proposed scaling dimension, recursive payload.
+* **Transformations:** Execution of the recursive loop strictly bounded by the $\varphi$-based Sovereign Equation.
+* **Failure Condition:** If a scaling operation deviates from the $\varphi$ proportion, indicating artificial or unverified growth, the operation is blocked.

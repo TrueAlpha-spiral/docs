@@ -1,0 +1,50 @@
+---
+title: "Operational Mechanics (The Metabolism & The Courtroom)"
+description: "Phase 3: Formalizing how the TAS system survives, self-corrects, and proves its integrity under stress."
+---
+
+# Operational Mechanics (The Metabolism & The Courtroom)
+
+This document formalizes Phase 3 of the TrueAlphaSpiral (TAS) architecture. With the "Physics of Truth" established in Phase 1 and the "Lock" implemented in Phase 2, this phase defines the operational mechanisms—how the system executes transformations, maintains structural integrity under load, and actively falsifies invalid state proposals. This is the metabolic engine and the judicial courtroom of the architecture.
+
+## Core Artifacts
+
+*   `RECURSIVE_CONTEXT.md`
+*   `mnist_test.csv`
+*   `Fusion Reactor Safety and Truth Architecture`
+
+## 1. The Phoenix Protocol
+
+The Phoenix Protocol is the ultimate fail-safe and self-correction mechanism within the TAS architecture. It ensures that if the system's structural integrity is compromised beyond the threshold of normal metabolic recovery, a deterministic rollback occurs to preserve the core invariants.
+
+### The P2 Hard Rollback and the 4-tiered SLA
+The protocol defines a rigorous Service Level Agreement (SLA) with four tiers of escalating response, culminating in the P2 Hard Rollback, which physically severs compromised nodes and restores the last known valid state.
+
+* **Testable Invariant:** Any system state classified as structurally compromised (Tier 4 failure) must trigger a deterministic P2 Hard Rollback to a provably valid prior state.
+* **Inputs:** System health metrics, cryptographic proof validation streams, error logs.
+* **Transformations:** Continuous evaluation against the 4-tiered SLA threshold bounds.
+* **Failure Condition:** If an invalid state is detected and not resolved within Tier 1-3 SLA timeframes, or if a Tier 4 fatal error occurs, the system forcefully executes the P2 rollback. Failure to rollback constitutes a total system collapse.
+
+## 2. The Triadic Knowledge Engine
+
+The Triadic Knowledge Engine is the primary metabolic processor of the architecture. It ingests unverified data, processes it through the cryptographic constraints of Phase 2, and outputs structurally sound, verified state updates.
+
+### The DecisionStrainGauge
+The engine utilizes the DecisionStrainGauge to measure the structural stress placed on the system by any given operation. It ensures that no single process or node can exceed the physical constraints defined by the Nordland Hamiltonian.
+
+* **Testable Invariant:** Every data transformation process must pass through the Triadic Knowledge Engine and register a strain value below the critical threshold on the DecisionStrainGauge.
+* **Inputs:** Raw data payload, environmental context vectors.
+* **Transformations:** Triadic processing (ingestion, structural validation, cryptographic binding) and continuous calculation of the resulting strain vector.
+* **Failure Condition:** If the DecisionStrainGauge registers a value exceeding the predefined safety limits, the transformation is aborted and logged as an over-strain event.
+
+## 3. The Falsification Surface
+
+The Falsification Surface acts as the "courtroom" of the TAS architecture. It is not designed to prove a state is "true" in a narrative sense, but rather to subject all proposed states to rigorous cryptographic falsification. Only states that cannot be falsified are admitted.
+
+### The MNIST Torsion Bench
+The MNIST Torsion Bench is a specialized testing environment within the Falsification Surface, designed to evaluate lineage-preserving accuracy under extreme torsional stress (e.g., adversarial inputs, high-velocity data streams).
+
+* **Testable Invariant:** All proposed state updates must survive evaluation on the MNIST Torsion Bench without breaking their cryptographic lineage or violating Axiom P1 (Admissibility).
+* **Inputs:** Proposed state update, historical lineage proofs, adversarial stress vectors.
+* **Transformations:** Execution of the proposed state within the Torsion Bench environment while applying varying degrees of cryptographic and structural stress.
+* **Failure Condition:** If the proposed state update fails to maintain its lineage-preserving accuracy or breaks under stress, it is falsified and irrevocably rejected by the courtroom.

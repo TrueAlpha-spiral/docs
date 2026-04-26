@@ -72,7 +72,10 @@
       "group": "Architecture",
       "pages": [
         "architecture/manifest",
-        "architecture/prime-invariant"
+        "architecture/prime-invariant",
+        "architecture/mathematical-constraints",
+        "architecture/operational-mechanics",
+        "architecture/institutional-layer"
       ]
     },
     {
