@@ -37,6 +37,30 @@ The engine utilizes the DecisionStrainGauge to measure the structural stress pla
 * **Transformations:** Triadic processing (ingestion, structural validation, cryptographic binding) and continuous calculation of the resulting strain vector.
 * **Failure Condition:** If the DecisionStrainGauge registers a value exceeding the predefined safety limits, the transformation is aborted and logged as an over-strain event.
 
+## Beyond Scaling World Models
+
+The task is no longer to scale larger world models of the same problem. World models can simulate, predict, and plan, but simulation alone cannot establish admissibility.
+
+A world model may identify what could happen. It cannot, by itself, prove what should be allowed to become canonical action.
+
+Phase 3 therefore shifts the center of gravity from predictive simulation to trajectory admissibility. The system does not ask whether a proposed action is plausible, fluent, or strategically useful. It asks whether the transition is authorized, constraint-bound, lineage-preserving, and proof-bearing.
+
+The DecisionStrainGauge exists at this boundary. It measures whether a proposed transition deforms the verified trajectory before the ZK circuit is asked to prove it. If the strain is low, the transition may attempt proof. If the strain is high, it requires witness or escalation. If the strain is fatal, Phoenix routes it directly into the Refusal Ledger.
+
+This prevents world-model imagination from becoming execution without pedigree.
+
+```text
+Prediction is not permission.
+Simulation is not lineage.
+Plausibility is not admissibility.
+No proof → no fold → no execution.
+```
+
+**Operational Definition:**
+```text
+TAS does not compete with world models by simulating more reality. It governs whether simulated possibility is admissible as real action.
+```
+
 ## 3. The Falsification Surface
 
 The Falsification Surface acts as the "courtroom" of the TAS architecture. It is not designed to prove a state is "true" in a narrative sense, but rather to subject all proposed states to rigorous cryptographic falsification. Only states that cannot be falsified are admitted.
