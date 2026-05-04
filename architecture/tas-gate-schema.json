@@ -1,0 +1,189 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://truealpha-spiral.github.io/docs/architecture/tas-gate-schema.json",
+  "title": "TAS Gate Configuration",
+  "description": "Declarative Refusal-Parameter contract binding an agent to a principal's verified authority, scope, and temporal constraints.",
+  "type": "object",
+  "required": ["version", "principal", "scope", "temporal", "lineage"],
+  "additionalProperties": false,
+  "properties": {
+    "version": {
+      "type": "string",
+      "description": "Schema version for forward-compatibility. Must follow semver.",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$",
+      "examples": ["1.0.0"]
+    },
+    "principal": {
+      "type": "object",
+      "description": "The verified, cryptographically signed actor who issues this gate configuration.",
+      "required": ["id", "public_key", "signature"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "A stable, unique identifier for the principal (e.g. DID, UUID, or domain-qualified handle).",
+          "minLength": 1,
+          "examples": ["did:key:z6Mk...", "user:alice@example.com"]
+        },
+        "public_key": {
+          "type": "string",
+          "description": "Base64url-encoded public key used to verify the principal's signature.",
+          "minLength": 1
+        },
+        "signature": {
+          "type": "string",
+          "description": "Base64url-encoded cryptographic signature over the canonical form of this document (excluding this field). Signing algorithm is determined by the key type.",
+          "minLength": 1
+        },
+        "display_name": {
+          "type": "string",
+          "description": "Human-readable label for the principal. Optional; not used in verification.",
+          "maxLength": 128
+        }
+      }
+    },
+    "scope": {
+      "type": "object",
+      "description": "Explicit enumeration of actions the agent is permitted to attempt. Anything not listed is refused.",
+      "required": ["permitted_actions"],
+      "additionalProperties": false,
+      "properties": {
+        "permitted_actions": {
+          "type": "array",
+          "description": "Whitelist of action identifiers the agent may execute. Must be non-empty.",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "examples": ["read:file", "write:message", "invoke:tool:search"]
+          }
+        },
+        "denied_actions": {
+          "type": "array",
+          "description": "Explicit deny list that overrides permitted_actions if there is a conflict. Defaults to empty.",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "default": []
+        },
+        "resource_patterns": {
+          "type": "array",
+          "description": "Optional glob-style patterns that further restrict which resources the permitted actions apply to.",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "examples": ["repo:truealpha-spiral/*", "file:/data/public/**"]
+          }
+        }
+      }
+    },
+    "temporal": {
+      "type": "object",
+      "description": "Tamper-proof time window during which this gate is active. Outside this window every action is refused.",
+      "required": ["not_before", "not_after"],
+      "additionalProperties": false,
+      "properties": {
+        "not_before": {
+          "type": "string",
+          "format": "date-time",
+          "description": "ISO 8601 / RFC 3339 timestamp. Actions attempted before this moment are refused.",
+          "examples": ["2026-01-01T00:00:00Z"]
+        },
+        "not_after": {
+          "type": "string",
+          "format": "date-time",
+          "description": "ISO 8601 / RFC 3339 timestamp. Actions attempted at or after this moment are refused.",
+          "examples": ["2026-12-31T23:59:59Z"]
+        },
+        "clock_skew_seconds": {
+          "type": "integer",
+          "description": "Maximum tolerated clock skew in seconds when evaluating not_before / not_after. Defaults to 30.",
+          "minimum": 0,
+          "maximum": 300,
+          "default": 30
+        }
+      }
+    },
+    "lineage": {
+      "type": "object",
+      "description": "Proof chain tracing this gate back to a Human-in-the-Loop root authority.",
+      "required": ["root_authority_id", "chain"],
+      "additionalProperties": false,
+      "properties": {
+        "root_authority_id": {
+          "type": "string",
+          "description": "Identifier of the Tier-0 human principal who ultimately authorizes this gate.",
+          "minLength": 1,
+          "examples": ["did:key:z6MkRootAuthority..."]
+        },
+        "chain": {
+          "type": "array",
+          "description": "Ordered sequence of delegation receipts from root_authority_id down to the principal. Each entry must be verifiable against its predecessor.",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["delegator_id", "delegatee_id", "receipt_hash"],
+            "additionalProperties": false,
+            "properties": {
+              "delegator_id": {
+                "type": "string",
+                "description": "The actor granting delegation at this step.",
+                "minLength": 1
+              },
+              "delegatee_id": {
+                "type": "string",
+                "description": "The actor receiving delegation at this step.",
+                "minLength": 1
+              },
+              "receipt_hash": {
+                "type": "string",
+                "description": "Hex-encoded SHA-256 (or stronger) hash of the immutable delegation receipt stored on the ledger.",
+                "pattern": "^[0-9a-fA-F]{64,}$"
+              },
+              "issued_at": {
+                "type": "string",
+                "format": "date-time",
+                "description": "Timestamp when this delegation was issued."
+              }
+            }
+          }
+        }
+      }
+    },
+    "receipt_policy": {
+      "type": "object",
+      "description": "Controls how execution and refusal receipts are generated and stored. Optional; system defaults apply when omitted.",
+      "additionalProperties": false,
+      "properties": {
+        "ledger_endpoint": {
+          "type": "string",
+          "format": "uri",
+          "description": "URI of the immutable ledger to which receipts are written.",
+          "examples": ["https://ledger.truealpha.example/submit"]
+        },
+        "hash_algorithm": {
+          "type": "string",
+          "description": "Hashing algorithm used to compute receipt hashes. Defaults to SHA-256.",
+          "enum": ["sha-256", "sha-384", "sha-512", "blake2b-256", "blake3"],
+          "default": "sha-256"
+        },
+        "include_input_hash": {
+          "type": "boolean",
+          "description": "When true, a hash of the action's input payload is embedded in the receipt for evidence-readiness. Defaults to true.",
+          "default": true
+        }
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Free-form key/value annotations. Not used in enforcement logic.",
+      "additionalProperties": {
+        "type": "string"
+      }
+    }
+  }
+}
