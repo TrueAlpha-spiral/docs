@@ -68,7 +68,7 @@ Every interaction with the TAS engine produces a **Receipt Hash**. Unlike tradit
 
 The `.tas-gate` file is the declarative contract that binds any agent to a principal's Refusal Parameters. It is the operational bridge between this architecture's constitutional principles and the deterministic code that enforces them.
 
-See [`architecture/tas-gate`](./architecture/tas-gate.mdx) for the full schema specification and usage examples.
+See [`architecture/tas-gate`](/architecture/tas-gate) for the full schema specification and usage examples.
 
 ---
 
@@ -76,10 +76,10 @@ See [`architecture/tas-gate`](./architecture/tas-gate.mdx) for the full schema s
 
 | Document | Description |
 |---|---|
-| [Architectural Manifest](./architecture/manifest.mdx) | Full corpus index of all TAS architecture phases |
-| [Prime Invariant (A0)](./architecture/prime-invariant.mdx) | Phase 1 — Epistemological bedrock and foundational axioms |
-| [The Lock](./architecture/the-lock.mdx) | Phase 2 — Mathematical and cryptographic constraints |
-| [The `.tas-gate` Schema](./architecture/tas-gate.mdx) | Declarative refusal-parameter configuration spec |
+| [Architectural Manifest](/architecture/manifest) | Full corpus index of all TAS architecture phases |
+| [Prime Invariant (A0)](/architecture/prime-invariant) | Phase 1 — Epistemological bedrock and foundational axioms |
+| [The Lock](/architecture/the-lock) | Phase 2 — Mathematical and cryptographic constraints |
+| [The `.tas-gate` Schema](/architecture/tas-gate) | Declarative refusal-parameter configuration spec |
 
 ---
 
