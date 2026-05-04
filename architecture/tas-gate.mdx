@@ -1,0 +1,216 @@
+---
+title: "The .tas-gate Schema"
+description: "Declarative Refusal-Parameter specification for binding an agent to a principal's verified authority, scope, and temporal constraints."
+---
+
+# The `.tas-gate` Schema
+
+The `.tas-gate` file is the operational bridge between the TAS constitutional principles and the deterministic code that enforces them. It is a **declarative contract** that binds any agent—human or AI—to a principal's explicit Refusal Parameters.
+
+Without a valid, signed `.tas-gate` file, the [Refusal Gate](/architecture/the-lock) closes and every action is refused.
+
+## Design Principles
+
+| Principle | Implementation |
+|---|---|
+| Fail-Closed | No action executes unless all four constraints are met |
+| Signed Identity | Every gate is cryptographically signed by the issuing principal |
+| Explicit Scope | Only whitelisted actions are permitted; everything else is refused |
+| Tamper-Proof Time | A hard validity window enforced before every execution |
+| Lineage | A verifiable delegation chain traces back to a Human-in-the-Loop root |
+
+---
+
+## Top-Level Fields
+
+| Field | Required | Type | Description |
+|---|---|---|---|
+| `version` | ✅ | string (semver) | Schema version for forward-compatibility |
+| `principal` | ✅ | object | Verified, cryptographically signed actor |
+| `scope` | ✅ | object | Explicit enumeration of permitted actions |
+| `temporal` | ✅ | object | Tamper-proof validity time window |
+| `lineage` | ✅ | object | Delegation chain back to the root authority |
+| `receipt_policy` | ⬜ | object | Controls receipt generation and ledger storage |
+| `metadata` | ⬜ | object | Free-form annotations (not used in enforcement) |
+
+---
+
+## `principal`
+
+Identifies and authenticates the actor who issues this gate.
+
+```json
+"principal": {
+  "id": "did:key:z6MkhaXgBZDvotDkL5257faiztiGiC2QtKLGpbnnEGta2doK",
+  "public_key": "<base64url-encoded public key>",
+  "signature": "<base64url-encoded signature over canonical document>",
+  "display_name": "Alice (human)"
+}
+```
+
+| Field | Required | Description |
+|---|---|---|
+| `id` | ✅ | Stable unique identifier (DID, UUID, or domain handle) |
+| `public_key` | ✅ | Base64url-encoded public key for signature verification |
+| `signature` | ✅ | Signature over the canonical form of this document (excluding this field) |
+| `display_name` | ⬜ | Human-readable label; not used in verification |
+
+---
+
+## `scope`
+
+Declares the exact actions this gate permits. **Any action not in `permitted_actions` is refused.**
+
+```json
+"scope": {
+  "permitted_actions": [
+    "read:file",
+    "write:message",
+    "invoke:tool:search"
+  ],
+  "denied_actions": ["delete:file"],
+  "resource_patterns": ["repo:truealpha-spiral/*"]
+}
+```
+
+| Field | Required | Description |
+|---|---|---|
+| `permitted_actions` | ✅ | Non-empty whitelist of action identifiers |
+| `denied_actions` | ⬜ | Explicit deny list; overrides `permitted_actions` on conflict |
+| `resource_patterns` | ⬜ | Glob-style patterns restricting which resources actions apply to |
+
+---
+
+## `temporal`
+
+Defines the hard validity window. Actions attempted outside this window are refused regardless of identity or scope.
+
+```json
+"temporal": {
+  "not_before": "2026-01-01T00:00:00Z",
+  "not_after":  "2026-12-31T23:59:59Z",
+  "clock_skew_seconds": 30
+}
+```
+
+| Field | Required | Description |
+|---|---|---|
+| `not_before` | ✅ | ISO 8601 timestamp; actions before this instant are refused |
+| `not_after` | ✅ | ISO 8601 timestamp; actions at or after this instant are refused |
+| `clock_skew_seconds` | ⬜ | Tolerated clock drift in seconds (default: `30`, max: `300`) |
+
+---
+
+## `lineage`
+
+Provides the verifiable delegation chain from this gate back to a Human-in-the-Loop root authority, implementing **Qui facit per alium facit per se**.
+
+```json
+"lineage": {
+  "root_authority_id": "did:key:z6MkRootAuthority...",
+  "chain": [
+    {
+      "delegator_id": "did:key:z6MkRootAuthority...",
+      "delegatee_id": "did:key:z6MkAlice...",
+      "receipt_hash": "a3f5c8e1...",
+      "issued_at": "2026-01-01T00:00:00Z"
+    }
+  ]
+}
+```
+
+| Field | Required | Description |
+|---|---|---|
+| `root_authority_id` | ✅ | Identifier of the Tier-0 human principal |
+| `chain` | ✅ | Ordered sequence of delegation receipts (min 1 entry) |
+| `chain[].delegator_id` | ✅ | Actor granting delegation at this step |
+| `chain[].delegatee_id` | ✅ | Actor receiving delegation at this step |
+| `chain[].receipt_hash` | ✅ | Hex-encoded hash (≥64 chars) of the ledger receipt |
+| `chain[].issued_at` | ⬜ | ISO 8601 timestamp when the delegation was issued |
+
+---
+
+## `receipt_policy` (optional)
+
+Controls how execution and refusal receipts are generated and persisted.
+
+```json
+"receipt_policy": {
+  "ledger_endpoint": "https://ledger.truealpha.example/submit",
+  "hash_algorithm": "sha-256",
+  "include_input_hash": true
+}
+```
+
+| Field | Default | Description |
+|---|---|---|
+| `ledger_endpoint` | system default | URI of the immutable ledger |
+| `hash_algorithm` | `"sha-256"` | One of `sha-256`, `sha-384`, `sha-512`, `blake2b-256`, `blake3` |
+| `include_input_hash` | `true` | Embeds a hash of the action's input payload in the receipt |
+
+---
+
+## Complete Example
+
+```json
+{
+  "version": "1.0.0",
+  "principal": {
+    "id": "did:key:z6MkhaXgBZDvotDkL5257faiztiGiC2QtKLGpbnnEGta2doK",
+    "public_key": "MCowBQYDK2VwAyEA...",
+    "signature": "base64url-signature...",
+    "display_name": "Alice"
+  },
+  "scope": {
+    "permitted_actions": ["read:file", "write:message"],
+    "denied_actions": ["delete:file"],
+    "resource_patterns": ["repo:truealpha-spiral/*"]
+  },
+  "temporal": {
+    "not_before": "2026-01-01T00:00:00Z",
+    "not_after":  "2026-12-31T23:59:59Z",
+    "clock_skew_seconds": 30
+  },
+  "lineage": {
+    "root_authority_id": "did:key:z6MkRootAuthority...",
+    "chain": [
+      {
+        "delegator_id": "did:key:z6MkRootAuthority...",
+        "delegatee_id": "did:key:z6MkhaXgBZDvotDkL5257faiztiGiC2QtKLGpbnnEGta2doK",
+        "receipt_hash": "a3f5c8e1b2d4f6789012345678901234567890abcdef1234567890abcdef1234",
+        "issued_at": "2025-12-15T10:00:00Z"
+      }
+    ]
+  },
+  "receipt_policy": {
+    "hash_algorithm": "sha-256",
+    "include_input_hash": true
+  }
+}
+```
+
+---
+
+## Refusal Conditions
+
+The gate produces a **Refusal Receipt** when any of the following are true:
+
+| Condition | Reason |
+|---|---|
+| Signature verification fails | Identity constraint violated |
+| Action not in `permitted_actions` | Scope constraint violated |
+| Action is in `denied_actions` | Scope constraint violated |
+| Resource does not match `resource_patterns` | Scope constraint violated |
+| Current time is before `not_before` | Temporal constraint violated |
+| Current time is at or after `not_after` | Temporal constraint violated |
+| `lineage.chain` cannot be verified | Lineage constraint violated |
+
+Every refusal is recorded as an immutable receipt, satisfying **Actori incumbit onus probandi**.
+
+---
+
+## JSON Schema
+
+The machine-readable schema is available at [`architecture/tas-gate-schema.json`](./tas-gate-schema.json).
+
+*This document defines the operational enforcement layer described in the [Architectural Manifest](/architecture/manifest) and is grounded in the axioms of the [Prime Invariant (A0)](/architecture/prime-invariant).*
