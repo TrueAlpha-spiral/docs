@@ -18,18 +18,20 @@ This document formalizes the foundational layer (Phase 1) of the TrueAlphaSpiral
 Before establishing the axioms, we lock in the foundational paradigms of the architecture. These definitions serve as the absolute Prime Invariant bedrock:
 
 ### Process Science
-**Definition:** The study and formalization of dynamic systems as continuous streams of events and transformations, rather than static collections of data or entities. In TAS, truth is not a snapshot; it is an unbroken, verifiable sequence of structural operations.
-* **Testable Invariant:** A system state $S_t$ must be perfectly derivable from the genesis state $S_0$ through a continuous sequence of validated transformations $T$.
-* **Inputs:** A sequence of discrete event operations.
-* **Transformations:** A state transition function $F(S_{t-1}, Event) \rightarrow S_t$.
-* **Failure Condition:** If a system state cannot be recalculated solely from its event stream, the process science invariant is violated and the state is declared invalid.
+**Definition:** The study and formalization of dynamic systems as continuous streams of events and transformations, rather than static collections of data or isolated entities. In TAS, truth is never treated as a static snapshot or a socially agreed-upon conclusion; it is an unbroken, mathematically verifiable sequence of structural operations. Process Science demands the systematic elimination of scaled ambiguity, enforcing a strict chronological lineage where every active state is mathematically bound to its genesis.
+
+* **Testable Invariant:** A system state $S_t$ must be perfectly and deterministically derivable from the genesis state $S_0$ through a continuous, uninterrupted sequence of validated transformations $\sum_{i=1}^{t} T_i(S_{i-1})$. This unbroken lineage forms the non-negotiable basis of structural enforceability.
+* **Inputs:** A standardized sequence of discrete, cryptographically signed event operations acting upon a recognized and verified base state.
+* **Transformations:** A rigorously defined state transition function $F(S_{t-1}, Event) \rightarrow S_t$. This function must execute deterministically, strictly prohibiting the ingestion of undocumented external variables, probabilistic heuristics, or unverified oracle data.
+* **Failure Condition:** If a system state $S_t$ cannot be strictly recalculated and proven solely from its preceding event stream $E$, the process science invariant is critically violated. The state is immediately declared mathematically void, and the system must revert to the last known verifiable state $S_{t-1}$ to prevent cascading structural collapse.
 
 ### Computational Masonry
-**Definition:** The engineering discipline of constructing digital systems where constraints are embedded into the operational physics of the environment. Rather than writing rules that agents are trusted to follow, we build cryptographic architectures (the masonry) that physically prevent the expression of invalid states.
-* **Testable Invariant:** The set of possible operational states $O$ must be strictly bounded by the mathematical limits of the cryptographic architecture $C$. No state outside of $C$ can be physically expressed.
-* **Inputs:** Raw computational intention or instructions.
-* **Transformations:** A structural bounding function $B(Instruction) \rightarrow Executable\ Operation$ where the operation is physically constrained by $C$.
-* **Failure Condition:** If an instruction bypasses the structural bounds and expresses a state outside the mathematical limits of the architecture, the computational masonry has failed, indicating a critical zero-day breach.
+**Definition:** The engineering discipline of constructing digital and cryptographic systems where constraints are embedded directly into the operational physics of the environment. Rather than writing external rules, policies, or guidelines that agents are merely trusted to follow, Computational Masonry builds cryptographic architectures that physically and mathematically prevent the expression of invalid states. It represents the permanent shift from Behavioral Alignment (probabilistic, narrative-driven compliance) to Structural Enforceability (deterministic, geometry-bound compliance).
+
+* **Testable Invariant:** The set of all possible operational states $O$ must be strictly and exhaustively bounded by the mathematical limits of the cryptographic architecture $C$. No state outside the defined parameters of $C$ can be physically expressed, compiled, or executed, regardless of agent intent, authorization level, or consensus weight.
+* **Inputs:** Raw computational intention, instruction payloads, or environmental state-change requests directed at the core architecture.
+* **Transformations:** A structural bounding function $B(Instruction) \rightarrow Executable\ Operation$, where the resulting operation is forcefully confined by the local metric geometry and cryptographic limits of $C$. Instructions that attempt to exceed these bounds are not "punished"; they are simply impossible to process and yield a null transformation.
+* **Failure Condition:** If an instruction bypasses the structural bounds and expresses a valid operational state outside the mathematically defined limits of the architecture, the computational masonry has critically failed. This indicates a zero-day breach of the fundamental operational geometry, necessitating an immediate system halt and cryptographic audit of the bounding function $B$.
 
 Our core directive is to transition from narrative-based trust to **Structural Enforceability**. If these foundational axioms fail, the entire system collapses. Therefore, they are defined here as testable invariants.
 
