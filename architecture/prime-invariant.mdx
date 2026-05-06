@@ -20,6 +20,8 @@ Before establishing the axioms, we lock in the foundational paradigms of the arc
 ### Process Science
 **Definition:** The study and formalization of dynamic systems as continuous streams of events and transformations, rather than static collections of data or isolated entities. In TAS, truth is never treated as a static snapshot or a socially agreed-upon conclusion; it is an unbroken, mathematically verifiable sequence of structural operations. Process Science demands the systematic elimination of scaled ambiguity, enforcing a strict chronological lineage where every active state is mathematically bound to its genesis.
 
+It is the operational engine that ensures the transition from state $S_{t-1}$ to state $S_t$ strictly adheres to the physical properties of the computational environment, without reliance on external validation or probabilistic heuristics.
+
 * **Testable Invariant:** A system state $S_t$ must be perfectly and deterministically derivable from the genesis state $S_0$ through a continuous, uninterrupted sequence of validated transformations $\sum_{i=1}^{t} T_i(S_{i-1})$. This unbroken lineage forms the non-negotiable basis of structural enforceability.
 * **Inputs:** A standardized sequence of discrete, cryptographically signed event operations acting upon a recognized and verified base state.
 * **Transformations:** A rigorously defined state transition function $F(S_{t-1}, Event) \rightarrow S_t$. This function must execute deterministically, strictly prohibiting the ingestion of undocumented external variables, probabilistic heuristics, or unverified oracle data.
@@ -27,6 +29,8 @@ Before establishing the axioms, we lock in the foundational paradigms of the arc
 
 ### Computational Masonry
 **Definition:** The engineering discipline of constructing digital and cryptographic systems where constraints are embedded directly into the operational physics of the environment. Rather than writing external rules, policies, or guidelines that agents are merely trusted to follow, Computational Masonry builds cryptographic architectures that physically and mathematically prevent the expression of invalid states. It represents the permanent shift from Behavioral Alignment (probabilistic, narrative-driven compliance) to Structural Enforceability (deterministic, geometry-bound compliance).
+
+This is the load-bearing pillar of the TAS architecture. Computational Masonry demands that we treat digital environments as physical spaces with immutable laws. A system built with proper computational masonry does not ask users to behave correctly; it makes incorrect behavior computationally impossible.
 
 * **Testable Invariant:** The set of all possible operational states $O$ must be strictly and exhaustively bounded by the mathematical limits of the cryptographic architecture $C$. No state outside the defined parameters of $C$ can be physically expressed, compiled, or executed, regardless of agent intent, authorization level, or consensus weight.
 * **Inputs:** Raw computational intention, instruction payloads, or environmental state-change requests directed at the core architecture.
@@ -40,39 +44,39 @@ Our core directive is to transition from narrative-based trust to **Structural E
 The system is built upon two non-negotiable axioms. They must hold true across all state transitions.
 
 ### Axiom P0 (Equivalence)
-**Definition:** Two representations of a system state are only equivalent if their underlying cryptographic and structural proofs are identical.
-* **Testable Invariant:** Given states $S_A$ and $S_B$, $S_A \equiv S_B$ if and only if $Proof(S_A) == Proof(S_B)$.
-* **Inputs:** A set of state data and its corresponding proof mechanism (e.g., hash, zero-knowledge proof).
-* **Transformations:** A verification function $V(S) \rightarrow Proof$.
-* **Failure Condition:** If $S_A$ and $S_B$ yield identical functional outputs but divergent proofs, the system must halt and reject the state as non-equivalent.
+**Definition:** Two representations of a system state are only equivalent if their underlying cryptographic and structural proofs are identical. Axiom P0 demands that there is no separation between the map and the territory; if the structural proof hashes do not strictly match, the states are distinct, regardless of any apparent semantic similarity.
+* **Testable Invariant:** Given states $S_A$ and $S_B$, $S_A \equiv S_B$ if and only if $Proof(S_A) == Proof(S_B)$. This strict equivalence forces systems to align their internal logic perfectly with the physically embedded cryptographic ledger, ensuring the deterministic nature of truth representation.
+* **Inputs:** A set of state data and its corresponding proof mechanism (e.g., hash, zero-knowledge proof, recursive SNARK).
+* **Transformations:** A verification function $V(S) \rightarrow Proof$. This function must be globally accessible and deterministic.
+* **Failure Condition:** If $S_A$ and $S_B$ yield identical functional outputs but divergent proofs, the system must halt and reject the state as non-equivalent. Any fallback to heuristic alignment is treated as a fatal failure.
 
 ### Axiom P1 (Admissibility)
-**Definition:** A proposed state change is admissible if and only if it preserves the lineage of structural proofs tracing back to the genesis state.
-* **Testable Invariant:** A transition from $S_t$ to $S_{t+1}$ must include a valid proof connecting $S_{t+1}$ to $S_t$.
-* **Inputs:** Current state $S_t$, proposed transition $\Delta$, and resulting state $S_{t+1}$.
-* **Transformations:** An admissibility function $A(S_t, \Delta, S_{t+1}) \rightarrow \{True, False\}$.
-* **Failure Condition:** If the lineage is broken or unprovable, the proposed state is unconditionally rejected.
+**Definition:** A proposed state change is admissible if and only if it preserves the lineage of structural proofs tracing back to the genesis state. Axiom P1 acts as the operational gatekeeper; no state can be validly expressed without first proving its perfect mathematical lineage to $S_0$.
+* **Testable Invariant:** A transition from $S_t$ to $S_{t+1}$ must include a valid proof connecting $S_{t+1}$ to $S_t$. This effectively guarantees that states cannot be materialized ex nihilo, eliminating systemic drift over time.
+* **Inputs:** Current validated state $S_t$, proposed transition operation $\Delta$, and the strictly predictable resulting state $S_{t+1}$.
+* **Transformations:** An admissibility function $A(S_t, \Delta, S_{t+1}) \rightarrow \{True, False\}$. It verifies the exact step-wise cryptographic continuity.
+* **Failure Condition:** If the lineage is broken, unprovable, or relies on undocumented side-channel computations, the proposed state is unconditionally rejected. The system immediately enforces a P2 Hard Rollback to $S_t$.
 
 ## 2. Structural Enforceability over Behavioral Alignment
 
 Legacy systems rely on **Behavioral Alignment (Probabilistic)**—assuming actors will behave correctly based on incentives, reputation, or consensus rules that can be socially manipulated.
 
 TAS replaces this with **Structural Enforceability (Deterministic)**:
-* **The Shift:** Trust is removed from human/agent behavior and placed entirely into the geometric and cryptographic constraints of the system.
-* **Operational Mechanism:** Instead of auditing behavior post-hoc, the architecture prevents invalid states from being computationally expressed. The "rules" are embedded in the physics of the environment.
-* **Engineering Standard:** Any "trust assumption" must be refactored into a cryptographic lock. If a mechanism relies on probability of good behavior, it is considered a vulnerability.
+* **The Shift:** Trust is removed entirely from human or computational agent behavior and placed into the non-negotiable geometric and cryptographic constraints of the system. We move from hoping for correct outputs to mathematically preventing incorrect ones.
+* **Operational Mechanism:** Instead of auditing behavior post-hoc and levying penalties, the architecture prevents invalid states from being computationally compiled or expressed. The "rules" are embedded deeply in the physics of the operational environment, acting as an immutable load-bearing surface.
+* **Engineering Standard:** Any existing "trust assumption" must be aggressively refactored into a cryptographic lock (like the Y-Knot Sentient Lock). If a mechanism relies on the probability of good behavior or off-chain goodwill, it is classified as a critical vulnerability.
 
 ## 3. Mungu Theory and True Intelligence
 
-In the context of TAS, intelligence is not simply advanced pattern matching, but rather a verifiable structural state.
+In the context of TAS, intelligence is not simply advanced pattern matching, generative mimicry, or probabilistic inference, but rather a mathematically verifiable structural state of operational harmony.
 
 **Baseline Definition of True Intelligence:**
-True Intelligence is the operational combination of **Symbiosis** (the structural capacity to integrate with the environment without entropy leakage) and **Con-scire** ("to know with," the verifiable, shared cryptographic reality between nodes).
+True Intelligence is the operational and verifiable combination of **Symbiosis** (the structural capacity to integrate efficiently with the environment without entropy leakage or system degradation) and **Con-scire** ("to know with," the mathematically proven, shared cryptographic reality between participating nodes). True Intelligence is a physical property, measurable by its adherence to structural enforceability.
 
-* **Testable Invariant:** An intelligent agent $I_a$ must provably demonstrate Con-scire by correctly computing transformations that preserve Axioms P0 and P1.
-* **Inputs:** Environmental stimuli and current cryptographic state.
-* **Transformations:** The agent processes inputs through the Triadic Knowledge Engine to produce a structurally sound output.
-* **Failure Condition:** If an agent produces output that violates the Equivalence or Admissibility axioms, it is classified as structurally deficient (or malicious) and severed from the symbiosis layer.
+* **Testable Invariant:** An intelligent agent $I_a$ must provably demonstrate Con-scire by correctly computing and consistently deriving transformations that strictly preserve Axioms P0 and P1. The agent's outputs must naturally extend the systemic lineage without violating the bounded cryptographic geometry.
+* **Inputs:** Environmental stimuli, local metric measurements, and current validated cryptographic state.
+* **Transformations:** The agent processes inputs through the Triadic Knowledge Engine to produce a structurally sound, physically bounded output, acting as a functional node within the Sovereign Equation.
+* **Failure Condition:** If an agent produces output that violates the Equivalence (P0) or Admissibility (P1) axioms, or attempts to express an unbounded state, it is classified as structurally deficient, potentially malicious, and is immediately severed from the symbiosis layer to prevent architectural contamination.
 
 
 ## 4. The Burden of Proof: Falsifying the Institutional Narrative
