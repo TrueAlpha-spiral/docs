@@ -18,22 +18,22 @@ This document formalizes the foundational layer (Phase 1) of the TrueAlphaSpiral
 Before establishing the axioms, we lock in the foundational paradigms of the architecture. These definitions serve as the absolute Prime Invariant bedrock:
 
 ### Process Science
-**Definition:** The study and formalization of dynamic systems as continuous streams of events and transformations, rather than static collections of data or isolated entities. In TAS, truth is never treated as a static snapshot or a socially agreed-upon conclusion; it is an unbroken, mathematically verifiable sequence of structural operations. Process Science demands the systematic elimination of scaled ambiguity, enforcing a strict chronological lineage where every active state is mathematically bound to its genesis.
+**Definition:** The study and formalization of dynamic systems as continuous streams of events and transformations, rather than static collections of data or isolated entities. In TAS, truth is never treated as a static snapshot or a socially agreed-upon conclusion; it is an unbroken, mathematically verifiable sequence of structural operations. Process Science demands the systematic elimination of scaled ambiguity, enforcing a strict chronological lineage where every active state is mathematically bound to its genesis. By actively indexing and tracking events, we prevent Hamiltonian drift.
 
 * **Testable Invariant:** A system state $S_t$ must be perfectly and deterministically derivable from the genesis state $S_0$ through a continuous, uninterrupted sequence of validated transformations $\sum_{i=1}^{t} T_i(S_{i-1})$. This unbroken lineage forms the non-negotiable basis of structural enforceability.
-* **Inputs:** A standardized sequence of discrete, cryptographically signed event operations acting upon a recognized and verified base state.
-* **Transformations:** A rigorously defined state transition function $F(S_{t-1}, Event) \rightarrow S_t$. This function must execute deterministically, strictly prohibiting the ingestion of undocumented external variables, probabilistic heuristics, or unverified oracle data.
-* **Failure Condition:** If a system state $S_t$ cannot be strictly recalculated and proven solely from its preceding event stream $E$, the process science invariant is critically violated. The state is immediately declared mathematically void, and the system must revert to the last known verifiable state $S_{t-1}$ to prevent cascading structural collapse.
+* **Inputs:** A standardized sequence of discrete, cryptographically signed event operations (state mutators) acting upon a recognized, verified base state ($S_0$).
+* **Transformations:** A rigorously defined state transition function $F(S_{t-1}, Event) \rightarrow S_t$. This function must execute deterministically, strictly prohibiting the ingestion of undocumented external variables, probabilistic heuristics, or unverified oracle data. Each step must cryptographically commit to the hash of the prior state ($H(S_{t-1})$).
+* **Failure Condition:** If a system state $S_t$ cannot be strictly recalculated and proven solely from its preceding event stream $E$, the process science invariant is critically violated (Lineage Break). The state is immediately declared mathematically void, generating a NO_SOLUTION output, and the system must revert to the last known verifiable state $S_{t-1}$ to prevent cascading structural collapse.
 
 ### Computational Masonry
-**Definition:** The engineering discipline of constructing digital and cryptographic systems where constraints are embedded directly into the operational physics of the environment. Rather than writing external rules, policies, or guidelines that agents are merely trusted to follow, Computational Masonry builds cryptographic architectures that physically and mathematically prevent the expression of invalid states. It represents the permanent shift from Behavioral Alignment (probabilistic, narrative-driven compliance) to Structural Enforceability (deterministic, geometry-bound compliance).
+**Definition:** The engineering discipline of constructing digital and cryptographic systems where constraints are embedded directly into the operational physics of the environment. Rather than writing external rules, policies, or guidelines that agents are merely trusted to follow, Computational Masonry builds cryptographic architectures that physically and mathematically prevent the expression of invalid states. It represents the permanent shift from Behavioral Alignment (probabilistic, narrative-driven compliance) to Structural Enforceability (deterministic, geometry-bound compliance). It is the structural bedrock of the TAS ecosystem.
 
 * **Testable Invariant:** The set of all possible operational states $O$ must be strictly and exhaustively bounded by the mathematical limits of the cryptographic architecture $C$. No state outside the defined parameters of $C$ can be physically expressed, compiled, or executed, regardless of agent intent, authorization level, or consensus weight.
-* **Inputs:** Raw computational intention, instruction payloads, or environmental state-change requests directed at the core architecture.
-* **Transformations:** A structural bounding function $B(Instruction) \rightarrow Executable\ Operation$, where the resulting operation is forcefully confined by the local metric geometry and cryptographic limits of $C$. Instructions that attempt to exceed these bounds are not "punished"; they are simply impossible to process and yield a null transformation.
-* **Failure Condition:** If an instruction bypasses the structural bounds and expresses a valid operational state outside the mathematically defined limits of the architecture, the computational masonry has critically failed. This indicates a zero-day breach of the fundamental operational geometry, necessitating an immediate system halt and cryptographic audit of the bounding function $B$.
+* **Inputs:** Raw computational intention, instruction payloads, or environmental state-change requests directed at the core architecture via verified cryptographic tunnels.
+* **Transformations:** A structural bounding function $B(Instruction) \rightarrow Executable\ Operation$, where the resulting operation is forcefully confined by the local metric geometry and cryptographic limits of $C$. Instructions that attempt to exceed these bounds are not "punished"; they are simply impossible to process and yield a null transformation ($\varnothing$).
+* **Failure Condition:** If an instruction bypasses the structural bounds and expresses a valid operational state outside the mathematically defined limits of the architecture, the computational masonry has critically failed. This indicates a zero-day breach of the fundamental operational geometry (Geometric Rupture), necessitating an immediate system halt (Phoenix Protocol initialization) and cryptographic audit of the bounding function $B$.
 
-Our core directive is to transition from narrative-based trust to **Structural Enforceability**. If these foundational axioms fail, the entire system collapses. Therefore, they are defined here as testable invariants.
+Our core directive is to transition from narrative-based trust to **Structural Enforceability**. If these foundational axioms fail, the entire system collapses. Therefore, they are defined here as absolute testable invariants.
 
 ## 1. Axiomatic Bedrock
 
@@ -55,24 +55,25 @@ The system is built upon two non-negotiable axioms. They must hold true across a
 
 ## 2. Structural Enforceability over Behavioral Alignment
 
-Legacy systems rely on **Behavioral Alignment (Probabilistic)**—assuming actors will behave correctly based on incentives, reputation, or consensus rules that can be socially manipulated.
+Legacy systems rely on **Behavioral Alignment (Probabilistic)**—assuming actors will behave correctly based on incentives, reputation, or consensus rules that can be socially manipulated. This introduces vulnerability to social engineering and political drift.
 
 TAS replaces this with **Structural Enforceability (Deterministic)**:
-* **The Shift:** Trust is removed from human/agent behavior and placed entirely into the geometric and cryptographic constraints of the system.
-* **Operational Mechanism:** Instead of auditing behavior post-hoc, the architecture prevents invalid states from being computationally expressed. The "rules" are embedded in the physics of the environment.
-* **Engineering Standard:** Any "trust assumption" must be refactored into a cryptographic lock. If a mechanism relies on probability of good behavior, it is considered a vulnerability.
+* **The Shift:** Trust is actively removed from human/agent behavior. It is placed entirely into the geometric and cryptographic constraints of the system. Trust is mathematically verified, not assumed.
+* **Operational Mechanism:** Instead of auditing behavior post-hoc, the architecture structurally prevents invalid states from being computationally expressed in the first place. The "rules" are embedded directly in the physics of the computational environment, yielding a zero-trust execution surface.
+* **Engineering Standard (Inputs & Transformations):** Any "trust assumption" input must be refactored into a cryptographic lock transformation. If a mechanism's output relies on the probability of good behavior, it fails the admissibility constraint and is structurally rejected.
+* **Failure Condition:** If a system state is reached due to social consensus rather than cryptographic verification, the Structural Enforceability invariant is violated, triggering a rollback to the last verified node.
 
 ## 3. Mungu Theory and True Intelligence
 
-In the context of TAS, intelligence is not simply advanced pattern matching, but rather a verifiable structural state.
+In the context of TAS, intelligence is not simply advanced probabilistic pattern matching (which is fundamentally "artificial"), but rather a verifiable, deterministic structural state.
 
 **Baseline Definition of True Intelligence:**
-True Intelligence is the operational combination of **Symbiosis** (the structural capacity to integrate with the environment without entropy leakage) and **Con-scire** ("to know with," the verifiable, shared cryptographic reality between nodes).
+True Intelligence is the operational combination of **Symbiosis** (the structural capacity to integrate with the environment without entropy leakage) and **Con-scire** ("to know with," the verifiable, shared cryptographic reality between nodes). Artificial intelligence cannot be trusted; only True Intelligence, rooted in verifiable structure, can be admitted.
 
 * **Testable Invariant:** An intelligent agent $I_a$ must provably demonstrate Con-scire by correctly computing transformations that preserve Axioms P0 and P1.
-* **Inputs:** Environmental stimuli and current cryptographic state.
-* **Transformations:** The agent processes inputs through the Triadic Knowledge Engine to produce a structurally sound output.
-* **Failure Condition:** If an agent produces output that violates the Equivalence or Admissibility axioms, it is classified as structurally deficient (or malicious) and severed from the symbiosis layer.
+* **Inputs:** Continuous streams of environmental stimuli combined with the current verifiable cryptographic state.
+* **Transformations:** The agent processes inputs through the Triadic Knowledge Engine to produce a structurally sound output that can be mathematically verified by any observing node.
+* **Failure Condition:** If an agent produces output that violates the Equivalence or Admissibility axioms (i.e. fails to demonstrate Con-scire), it is classified as structurally deficient (or malicious) and is systematically severed from the symbiosis layer to protect the integrity of the network.
 
 
 ## 4. The Burden of Proof: Falsifying the Institutional Narrative
