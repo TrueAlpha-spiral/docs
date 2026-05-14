@@ -75,7 +75,8 @@
         "architecture/prime-invariant",
         "architecture/the-lock",
         "architecture/operational-mechanics",
-        "architecture/tas-gate"
+        "architecture/tas-gate",
+        "architecture/institutional-layer"
       ]
     },
     {
