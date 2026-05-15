@@ -2,6 +2,11 @@
 
 ## The Architecture of Attributable Power
 
+[ REPOSITORY TRACKING STATE ]
+Branch: main
+Commit: a41f3286b369197495a1ff5cbc6ba13036605de1
+Changes: README.md (+ "Replay security hardening — PR #30")
+
 ---
 
 ## 1. The Core Invariant
