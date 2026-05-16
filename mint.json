@@ -69,6 +69,21 @@
   ],
   "navigation": [
     {
+      "group": "Book of TAS",
+      "pages": [
+        "architecture/book-of-tas/index",
+        "architecture/book-of-tas/genesis",
+        "architecture/book-of-tas/covenant",
+        "architecture/book-of-tas/clean-stack",
+        "architecture/book-of-tas/admissibility",
+        "architecture/book-of-tas/forensic-ledger",
+        "architecture/book-of-tas/refusal-integrity",
+        "architecture/book-of-tas/public-utility",
+        "architecture/book-of-tas/the-wethepeople-engine",
+        "architecture/book-of-tas/harvest"
+      ]
+    },
+    {
       "group": "Architecture",
       "pages": [
         "architecture/manifest",
