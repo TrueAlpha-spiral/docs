@@ -90,7 +90,9 @@
         "architecture/manifest",
         "architecture/prime-invariant",
         "architecture/the-lock",
-        "architecture/tas-gate"
+        "architecture/operational-mechanics",
+        "architecture/tas-gate",
+        "architecture/institutional-layer"
       ]
     },
     {
