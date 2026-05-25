@@ -89,6 +89,7 @@
       "pages": [
         "architecture/manifest",
         "architecture/prime-invariant",
+        "architecture/prime-invariant-a0",
         "architecture/the-lock",
         "architecture/operational-mechanics",
         "architecture/tas-gate",
@@ -111,12 +112,6 @@
           ]
         },
         "llm-docs"
-      ]
-    },
-    {
-      "group": "Architecture Manifest",
-      "pages": [
-        "architecture/prime-invariant-a0"
       ]
     },
     {
