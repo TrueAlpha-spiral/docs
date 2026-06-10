@@ -1,0 +1,131 @@
+---
+title: "Sovereign Kernel Verification Protocol (SKVP) - RFC Draft"
+description: "Deterministic, cryptographically bound protocol for verifying and authorizing TAS state transitions."
+---
+
+# Sovereign Kernel Verification Protocol (SKVP)
+
+**Purpose:** Deterministic, cryptographically bound protocol for verifying and authorizing TAS state transitions. The Sovereign Kernel is the single arbiter: **accept** → commit track, **refuse** → isolated NULL_SPACE track. All messages are canonical, signed, and HMAC‑bound to prevent replay, split‑context, or session hijack.
+
+## 1. Canonical Wire Format and Field Packing
+
+**Serialization standard:** **Canonical JSON (RFC 8785)** using UTF‑8, no whitespace, deterministic key ordering. All messages MUST be serialized using RFC 8785 rules before any digest, HMAC, or signature is computed.
+
+**Canonical field order for `VERIFY_REQUEST` (exact):**
+1. `nonce`
+2. `parent_state_hash`
+3. `candidate_state_hash`
+4. `payload_digest`
+5. `proof_ref`
+6. `timestamp`
+7. `metadata`
+
+**Packing rule:** Build a JSON object with exactly the keys above in that order. Serialize with RFC 8785 canonicalization. Compute digests and HMACs over the resulting byte sequence.
+
+**Payload digest binding rule:**
+- `payload_digest = HMAC_SHA256(session_key, SHA256(parent_state_hash || 0x00 || payload_bytes))`
+- The `0x00` byte is a separator. `payload_bytes` is the canonical JSON of the user turn data (RFC 8785). This binds the payload to the parent hash cryptographically and prevents context splitting.
+
+**Signature and HMAC fields:**
+- `hmac` = `HMAC_SHA256(channel_key, canonical_message_bytes)`
+- `signature` = `ECDSA_secp256r1(SigningKey, SHA256(canonical_message_bytes))`
+- Both `hmac` and `signature` are attached to the message envelope (not inside `metadata`) and transmitted as hex strings.
+
+## 2. Test Vectors
+
+The following vectors are generated using mock keys for testing canonicalization and hashing.
+- **Session Key:** `super_secret_session_key_for_hmac`
+- **Channel Key:** `super_secret_channel_key_for_hmac`
+- **Parent Hash:** `0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef`
+- **Candidate Hash:** `0xabcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890`
+
+**Payload Data (RFC 8785):**
+```json
+{"file":"src/main.rs","user_action":"commit_code"}
+```
+
+**Payload Digest Computation:**
+```
+payload_digest = f2f745c2c078b687f377b6848b53b58f94ec8005019df5eda3bdf272a89b8d4c
+```
+
+**Canonical VERIFY_REQUEST (RFC 8785):**
+```json
+{"candidate_state_hash":"0xabcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890","metadata":{"priority":1,"source":"executor"},"nonce":302,"parent_state_hash":"0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef","payload_digest":"f2f745c2c078b687f377b6848b53b58f94ec8005019df5eda3bdf272a89b8d4c","proof_ref":"ipfs:QmTestRef","timestamp":1710000000}
+```
+
+**HMAC Signature:**
+```
+hmac = b4be8a629cc606f88063c01513f119da6f95d7f6478db2d42519813304498723
+```
+
+## 3. Message Schemas
+
+**VERIFY_REQUEST**
+- `nonce` (uint64)
+- `parent_state_hash` (hex string)
+- `candidate_state_hash` (hex string)
+- `payload_digest` (hex string)
+- `proof_ref` (string or null)
+- `timestamp` (unix epoch ms)
+- `metadata` (object)
+- **Envelope fields (not in canonical payload):** `hmac`, `signature`
+
+**VERIFY_RESPONSE**
+- `nonce` (uint64)
+- `verdict` (`"ACCEPT"` | `"REJECT"`)
+- `failure_reasons` (array of strings; empty if ACCEPT)
+- `refusal_receipt` (object | null)
+- `verifier_signature` (hex string)
+- `timestamp` (unix epoch ms)
+
+**SENTIENT_LOCK**
+- `nonce` (uint64)
+- `refusal_receipt` (object)
+- `circuit_broken` (true)
+- `timestamp` (unix epoch ms)
+- `signature` (hex string)
+
+**AUDIT_EVENT**
+- `nonce` (uint64)
+- `event_type` (string)
+- `payload` (object)
+- `wakechain_anchor` (hex string)
+- `timestamp` (unix epoch ms)
+- `signature` (hex string)
+
+**Refusal receipt (canonical fields):**
+1. `nonce`
+2. `parent_hash`
+3. `candidate_hash`
+4. `failure_reasons`
+5. `sdi_value` (float | null)
+6. `proof_status` (`"missing"|"invalid"|"timeout"|"ok"`)
+7. `timestamp`
+8. `circuit_broken` (true)
+9. `auditor_signature` (hex string)
+
+## 4. Deterministic Verification Ordering and Decision Rule
+
+**Fast path checks (must complete within $T_{fast}$)**
+1. **HMAC validity** (message authenticity)
+2. **Nonce and timestamp freshness** (replay protection)
+3. **Parent hash equality** (lineage quick check)
+4. **Payload digest verification** (recompute and compare)
+
+**SDI and invariant checks (fast/medium)**
+5. **Compute SDI** (embedding dot‑variance vs anchors)
+6. **Invariant check** (`invariant_check()` deterministic callback)
+
+**Full IVC proof verification (slow path)**
+7. **IVC verify** (recursive SNARK or folding verify)
+
+**Biconditional decision (formal):**
+$$
+\text{ACCEPT} \iff \text{HMAC OK} \land \text{Nonce/Timestamp OK} \land \text{Parent OK} \land \text{PayloadDigest OK} \land \text{SDI} \le \theta_{max} \land \text{Invariants OK} \land \text{IVC OK}
+$$
+If any conjunct is false, **REJECT**.
+
+**Timeout policy (zero‑drift):**
+- $T_{fast} \le 500\ \mu s$. If any fast check exceeds $T_{fast}$, treat as liveness failure → **REJECT**.
+- $T_{full}$ is bounded by policy (e.g., 200 ms). If full IVC verification exceeds $T_{full}$, **immediate REJECT** (no speculative commit). The system may queue for later re‑verification but must not apply the candidate state until a successful re‑verify occurs.

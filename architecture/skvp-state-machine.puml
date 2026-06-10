@@ -1,0 +1,53 @@
+@startuml SKVP_State_Machine
+skinparam defaultTextAlignment center
+skinparam backgroundColor white
+skinparam state {
+    BackgroundColor LightBlue
+    BorderColor DarkBlue
+    ArrowColor Black
+}
+
+title Sovereign Kernel Verification Protocol (SKVP) State Machine
+caption Strict separation of successful commit tracks vs. null space isolated tracks.
+
+|Orchestrator|
+|Verifier|
+|Executor|
+|Auditor|
+
+|Orchestrator|
+[*] --> PROPOSED : New Request
+
+|Verifier|
+PROPOSED --> VERIFYING : VERIFY_REQUEST
+
+state VERIFYING {
+    state "Fast Path Checks\n(HMAC, Nonce, Parent)" as Fast
+    state "SDI & Invariants" as SDI
+    state "IVC Proof Check" as IVC
+
+    Fast --> SDI : OK
+    SDI --> IVC : OK
+}
+
+VERIFYING --> COMMITTABLE : all_checks_pass\n[T < T_full]
+VERIFYING --> REFUSED : any_check_fail\n[or timeout]
+
+|Executor|
+COMMITTABLE --> APPLY_COMMIT : APPLY_COMMIT
+APPLY_COMMIT --> COMMITTED : commit_success
+
+|Auditor|
+REFUSED --> NULL_SPACE : emit_sentient_lock
+NULL_SPACE --> NULL_SPACE_ISOLATED : archival_and_privileged_recovery
+
+|Executor|
+COMMITTED --> [*]
+
+|Auditor|
+NULL_SPACE_ISOLATED --> [*] : manual_recovery
+
+note right of COMMITTED : State applied. WakeChain Event Emitted.
+note left of NULL_SPACE_ISOLATED : Privileged zone. No edges return to runtime.
+
+@enduml
