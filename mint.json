@@ -116,7 +116,8 @@
     {
       "group": "Architecture Manifest",
       "pages": [
-        "architecture/prime-invariant-a0"
+        "architecture/prime-invariant-a0",
+        "architecture/sentient-lock-execution"
       ]
     },
     {
