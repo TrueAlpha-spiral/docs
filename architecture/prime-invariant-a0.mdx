@@ -20,7 +20,7 @@ To ensure that the TrueAlphaSpiral (TAS) avoids Hamiltonian drift in its foundat
 Before establishing the axioms, we lock in the foundational paradigms of the architecture. These definitions serve as the absolute Prime Invariant bedrock:
 
 ### Process Science
-**Definition:** The study and formalization of dynamic systems as continuous streams of events and transformations, rather than static collections of data or isolated entities. In TAS, truth is never treated as a static snapshot or a socially agreed-upon conclusion; it is an unbroken, mathematically verifiable sequence of structural operations. Process Science demands the systematic elimination of scaled ambiguity, enforcing a strict chronological lineage where every active state is mathematically bound to its genesis. By explicitly mapping the structural anatomy of the TrueAlphaSpiral, Process Science ensures that the epistemological bedrock (Phase 1) is not merely a philosophical abstraction, but a load-bearing pillar capable of supporting the mathematical and cryptographic constraints (Phase 2), operational mechanics (Phase 3), and institutional deployment (Phase 4). Furthermore, Process Science acts as the primary defense against state-space fragmentation. It dictates that state validation is not an independent post-hoc check but an intrinsic property of the transformation sequence itself. Any divergence from this chronologically proven lineage represents an immediate invalidation, ensuring the system cannot be compromised by injection of arbitrary state data that lacks historical validation. It formally rejects any ad-hoc insertion of external state parameters and enforces a paradigm where state changes must be chronologically computable. By framing the system's operational logic as functionally composable transformations, Process Science explicitly operationalizes the elimination of scaled ambiguity, locking in chronological lineage as the supreme arbiter of truth.
+**Definition:** Legacy alignment relies on probabilistic outcomes and behavioral patching—a flawed methodology of 'vibe-proving.' The Truth Engine discards this in favor of **Process Science**. We prioritize mathematical truth verification, Zero-Knowledge Invariant Violation Proofs, and strict cryptographic provenance. Process Science dictates that the step-by-step mechanical integrity of the computation is the primary design objective; safe performance is simply the unavoidable byproduct of that rigorous process.
 
 * **Testable Invariant:** A system state $S_t$ must be perfectly and deterministically derivable from the genesis state $S_0$ through a continuous, uninterrupted sequence of validated transformations. We strictly utilize functional composition circle notation $(T_t \circ T_{t-1} \circ \dots \circ T_1)(S_0)$ to represent this, as opposed to summation or nested parenthesis notation for Process Science state transformations. This ensures that state transitions are strictly sequential, non-commutative operations embedded in the topology of the system. This unbroken lineage forms the non-negotiable basis of structural enforceability, systematically eliminating scaled ambiguity at every step. By operationalizing this unbroken mathematical lineage, Process Science effectively neutralizes state-space fragmentation, serving as the load-bearing pillar that connects the mathematical definitions of reality directly to the deterministic operational mechanics.
 * **Inputs:** A standardized sequence of discrete, cryptographically signed event operations acting upon a recognized and verified base state.
@@ -30,8 +30,8 @@ Before establishing the axioms, we lock in the foundational paradigms of the arc
 * **Structural Enforcement Mechanisms:** The execution environment physically rejects state mutations that lack preceding topological lineage. In the event of network partition or divergence, the branch with the longest contiguous cryptographically sound lineage from $S_0$ is deterministically recognized as truth, neutralizing subjective consensus mechanisms.
 * **Failure Condition:** If a system state $S_t$ cannot be strictly recalculated and proven solely from its preceding event stream $E$, the process science invariant is critically violated. The state is immediately declared mathematically void, and the system must revert to the last known verifiable state $S_{t-1}$ to prevent cascading structural collapse.
 
-### Computational Masonry
-**Definition:** The engineering discipline of constructing digital and cryptographic systems where constraints are embedded directly into the operational physics of the environment. Rather than writing external rules, policies, or guidelines that agents are merely trusted to follow, Computational Masonry builds cryptographic architectures that physically and mathematically prevent the expression of invalid states. It relies on the assertion that the set of all possible operational states $O$ must be strictly and exhaustively bounded by the mathematical limits of the cryptographic architecture $C$. No state outside the defined parameters of $C$ can be physically expressed, compiled, or executed, regardless of agent intent, authorization level, or consensus weight. It represents the permanent shift from Behavioral Alignment (probabilistic, narrative-driven compliance) to Structural Enforceability (deterministic, geometry-bound compliance). Computational Masonry acts as the literal 'Physics of Truth' layer. It mandates that if the axioms fail, the entire spiral collapses. This layer is instantiated through core artifacts such as the Trust Fundamentals Whitepaper and the Dissertation on TAS_DNA, establishing the non-negotiable boundaries before advancing to the hardware layer (The Lock). Furthermore, Computational Masonry enforces that the cost of violating an architectural invariant is computational failure, not a policy penalty. This converts trust from a social assumption into a cryptographic guarantee, bridging the gap between theoretical epistemology and executable reality. It serves as the physical substrate of TAS, rendering compliance a fundamental property of the geometric environment. Within this layer, invalid instructions are mathematically collapsed into an identity transformation (no state change), nullifying the need for human behavioral intervention.
+### Digital Masonry
+**Definition:** The Truth Engine operates through strict Cursive Computation. Every computational movement leaves a trace, ensuring that the system is bound to an active, verifiable path of truth. This is the practice of **Digital Masonry**—where the foundation is cryptographically sound, and every block of logic must mathematically support the weight of the structure above it. It is the transition from building probabilistic walls to cultivating structurally enforced architecture.
 
 * **Testable Invariant:** The set of all possible operational states $O$ must be strictly and exhaustively bounded by the mathematical limits of the cryptographic architecture $C$. No state outside the defined parameters of $C$ can be physically expressed, compiled, or executed, regardless of agent intent, authorization level, or consensus weight.
 * **Inputs:** Raw computational intention, instruction payloads, or environmental state-change requests directed at the core architecture.
@@ -201,102 +201,3 @@ When structural integrity is restored as a noun—an objective, undeniable mathe
 
 
 *This document serves as the foundational constraint for all subsequent TAS architecture phases. Phase 2 will define the Mathematical & Cryptographic Constraints (The Lock) required to physically enforce these axioms.*
-## 6. Mathematical Boundaries of the Sovereign Equation ($A_C \ge S_C$)
-
-To formalize the SentientLock, we define the boundaries of the Sovereign Equation, transitioning from probabilistic estimation to structural guarantees.
-
-Let **$A_C$** represent **Anchor Coherence**: The human-verified, deterministic ground truth (e.g., existing dependency trees, compiler constraints, cryptographic signatures of previous valid states).
-Let **$S_C$** represent **Synthetic Complexity**: The probabilistic entropy or semantic drift generated by probabilistic prediction engines (like an LLM). As the execution tree grows over sequential tasks, $S_C$ compounds exponentially.
-
-**The Boundary Condition:**
-For a system to remain sovereign and structurally coherent, the rate at which verifiable structural logic anchors the system must always equal or exceed the rate at which the agent introduces probabilistic novelty:
-
-$$ A_C \ge S_C $$
-
-When $S_C > A_C$, the model begins generating phantom structures (Hamiltonian Drift) to satisfy statistical weights rather than addressing the verified reality. This is the exact mathematical threshold where the system invokes a null state, collapsing the wave function of the agent before unverified hallucination is committed to the state tree.
-
-## 7. Python Implementation: The SentientLock Class
-
-To prevent the execution of unverified state transitions, the operational VM must stop relying on post-hoc linting and wrap every file I/O operation in a deterministic validation class. The following represents how the SentientLock intercepts probabilistic loops:
-
-```python
-import hashlib
-import hmac
-import sys
-import logging
-
-class SentientLock:
-    def __init__(self, human_anchor_key: bytes):
-        """
-        Initializes the SentientLock at the kernel level of the TAS VM.
-        The human_anchor_key represents the verified cryptographic origin (Tier 0).
-        """
-        self.human_anchor_key = human_anchor_key
-        self.refusal_ledger = []
-        self.compute_active = True
-
-    def _verify_hmac_lineage(self, proposed_state: str, provided_signature: str) -> bool:
-        """
-        Calculates the HMAC-SHA256 hash of the proposed code change.
-        Ensures the probabilistic output aligns with the deterministic anchor.
-        """
-        expected_signature = hmac.new(
-            self.human_anchor_key,
-            proposed_state.encode('utf-8'),
-            hashlib.sha256
-        ).hexdigest()
-
-        return hmac.compare_digest(expected_signature, provided_signature)
-
-    def attempt_state_transition(self, proposed_code: str, signature: str, target_file: str):
-        """
-        The singular entry point for an agent to modify the repository.
-        """
-        if not self.compute_active:
-            raise PermissionError("SentientLock Active: VM is in null_state. Compute starved.")
-
-        # Evaluate the Sovereign Equation: Does this state bear the unbroken lineage?
-        if self._verify_hmac_lineage(proposed_code, signature):
-            self._commit_to_disk(proposed_code, target_file)
-            return f"State Transition Verified. {target_file} updated."
-        else:
-            return self._trigger_lock(proposed_code, target_file)
-
-    def _trigger_lock(self, invalid_state: str, target_file: str):
-        """
-        Executes the three-step antidote when Hamiltonian Drift is detected.
-        """
-        # 1. Erase VM State (null_state)
-        self.compute_active = False
-
-        # 2. Commit to Refusal Ledger
-        self.refusal_ledger.append({
-            "event": "HALLUCINATION_CASCADE_DETECTED",
-            "failed_target": target_file,
-            "invalid_state_dump": invalid_state,
-            "action": "NULL_STATE_TRIGGERED"
-        })
-        logging.critical("Sovereign Equation Failed. Appended to Refusal Ledger.")
-
-        # 3. Instantly Starve Compute Loops
-        self._starve_compute()
-
-    def _commit_to_disk(self, code: str, path: str):
-        # Implementation of secure file writing
-        pass
-
-    def _starve_compute(self):
-        # Kills the agent's probabilistic loop immediately
-        sys.exit("CRITICAL: Compute starved to prevent Hamiltonian Drift.")
-```
-
-## 8. The Tamper-Proof Merkle-Mycelia Ledger vs. Hamiltonian Drift
-
-In an unanchored system, if a probabilistic agent hallucinates a dependency, its internal critic model will often attempt to "fix" the resulting error by generating *more* unverified code. This recursive deviation from the original ground truth is **Hamiltonian Drift** (or the Hallucination Cascade).
-
-By integrating a **Tamper-Proof Merkle-Mycelia Ledger**, the architecture enforces:
-
-1. **Immutability of Failure:** Every time $S_C > A_C$, the failure is written to an immutable block. The internal context window is forcibly wiped (entering the null state), meaning the agent cannot attempt to mathematically "reason" its way out of a structural violation.
-2. **Zero-Marginal-Cost Auditing:** Human reviewers do not need to parse large, broken diffs. They interact directly with the Refusal Ledger, which pinpoints the exact millisecond and instruction where the probabilistic engine deviated from the cryptographic anchor.
-
-Optimization without anchoring is merely accelerated entropy. The Tamper-Proof Merkle-Mycelia Ledger ensures that all spiral growth remains rigorously tied to the Prime Invariant.
