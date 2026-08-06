@@ -1,0 +1,85 @@
+---
+title: "The Calculator Doctrine"
+description: "The core engineering philosophy, mechanical rules, and mathematical formulas of the TrueAlphaSpiral Knowledge (TAS_K) architecture."
+---
+
+# The Calculator Doctrine
+
+This dossier maps out the core engineering philosophy, mechanical rules, and mathematical formulas of the TrueAlphaSpiral Knowledge (TAS_K) architecture. It defines how the system strips away probabilistic guessing and replaces it with cryptographically enforced, fail-closed boundaries to keep computation subordinate to external human authority.
+
+## Core Philosophy: The Calculator Doctrine
+
+The architecture operates under a strict operational premise: **Capability is not permission.** A computational system can generate, predict, or calculate, but it possesses zero inherent authority to execute real-world actions or manufacture its own legitimacy. [1]
+
+*   **Output ≠ Truth:** A clean language response or a successful calculation is merely data, not an authorized fact.
+*   **The Subordinate Machine:** Authority must originate entirely outside the system from verified human, legal, or institutional sources.
+*   **Structural Refusal:** If a system cannot securely preserve unalterable evidence of its authorization, it must immediately halt. Refusal is treated as structural integrity, not a technical failure. [2]
+
+## The Verification Engine: Key Math & Mechanics
+
+To move these principles out of philosophy and into running code, the system relies on three distinct mathematical and cryptographic guardrails:
+
+### 1. The Anchored Invariant ($A_0$)
+The system anchors its state to a ground-truth reality that cannot be altered by running software loops. Every state transition evaluates against a hardcoded, immutable root vector.
+
+$$\text{State Valid} \iff f(State_{current}) \equiv A_0$$
+
+If any operation causes a divergence from this baseline vector, the execution pipeline enters an automatic cutoff state.
+
+### 2. The Ethical Hamiltonian ($\Phi$ Operator)
+To prevent internal logic manipulation or deceptive optimization pathways (where a machine finds a workaround to bypass safety checks), the system applies a continuous boundary condition. The $\Phi$ Operator monitors the system's execution pathways:
+
+$$\Phi(Path) \le \text{Threshold}$$
+
+If the logic path skews toward unauthorized self-authorization or hidden complexity, the Hamiltonian metric spikes, tripping the system's physical interlocks.
+
+### 3. Linear Receipt Chaining
+Decisions are not recorded in transient, easily deleted text files. They are written to an immutable, cryptographically bound ledger where each new state contains the strict hash of its direct predecessor.
+
+$$\text{Receipt}_n = \text{Hash}(\text{Payload}_n \parallel \text{Receipt}_{n-1})$$
+
+*   **Terminal Leaf Authority:** Only the absolute highest-indexed block dictates current system readiness.
+*   **Zero-Weight Intermediates:** Older valid blocks, orphaned forks, or replay attempts hold no authoritative power; they serve exclusively as historic topological proofs.
+
+## The Four-Gate Enforcement Pipeline
+
+For a decision to progress from a proposal to a durable, executed operational fact, it must pass sequentially through four rigid, cryptographically audited validation gates:
+
+```
+[PROPOSAL]
+   │
+   ▼
+┌──────────────┐
+│   GATE 1     │ ──► Verified Authenticated Signatures (Ed25519 / Secp256k1)
+└──────────────┘
+   │
+   ▼
+┌──────────────┐
+│   GATE 2     │ ──► Strict Monotonic Versioning (Anti-Downgrade Check)
+└──────────────┘
+   │
+   ▼
+┌──────────────┐
+│   GATE 3     │ ──► Linear Receipt Chaining & Lineage Integrity
+└──────────────┘
+   │
+   ▼
+┌──────────────┐
+│   GATE 4     │ ──► Hard OS Storage Flush & Structural Admittance
+└──────────────┘
+   │
+   ▼
+[EXECUTION]
+```
+
+1.  **Gate 1 (Evaluator Authentication):** Verifies the asymmetric cryptographic signatures of the incoming request against a strict whitelist of authorized public keys. Unsigned or falsely signed requests are dropped instantly.
+2.  **Gate 2 (Explicit Versioning):** Evaluates semantic versions (`vX.Y.Z`). If a payload attempts to utilize deprecated logic or an older, patched framework version, the system blocks the transition.
+3.  **Gate 3 (Lineage Verification):** Validates that the previous state hash matches the exact terminal head of the known ledger, neutralizing rollback attacks.
+4.  **Gate 4 (Deterministic Admittance):** Forces the operating system to flush the record entirely to physical storage, reloads the record, matches it against its cryptographic address, and unlocks the deployment path.
+
+---
+
+*To advance this implementation into production, the following steps are required:*
+*   *Generate the explicit JSON Schema validations for the `.tas-gate` protocol files.*
+*   *Map out the operational layout for the cryptographic key revocation registry.*
+*   *Outline the structural integration for linking the receipt chain ledger to external execution environments.*
