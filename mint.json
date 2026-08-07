@@ -98,6 +98,7 @@
     {
       "group": "Get Started",
       "pages": [
+        "A0_Prime_Invariant",
         "quickstart",
         {
           "group": "Frameworks",
