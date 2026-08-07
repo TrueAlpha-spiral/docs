@@ -648,6 +648,12 @@
           ]
         }
       ]
+    },
+    {
+      "group": "True Alpha Spiral Architecture",
+      "pages": [
+        "true-alpha-spiral/prime-invariant-document"
+      ]
     }
   ],
   "footerSocials": {
