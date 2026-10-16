@@ -1,0 +1,41 @@
+---
+title: "Erratum: State Notation and Parent Relationships"
+description: "Reconciles derivative explanation documents with the formal operational-parent and evidence-parent implementation links."
+---
+
+# Erratum: State Notation and Parent Relationships
+
+## 1. Context and Findings
+
+During documentation audits, five findings were identified across imported explanatory materials concerning state notation and parent relationships. While the foundational **Phase 1 Prime Invariant Document (A0)** correctly states the intended TrueAlphaSpiral (TAS) architecture and formalizes `(T_t \circ T_{t-1} \circ \dots \circ T_1)(S_0)`, derivative and imported explanations occasionally misrepresent the formal state notation and parent linkages.
+
+This erratum serves to officially reconcile these explanatory materials with the formal mathematical claims and implementation realities of the TAS architecture.
+
+## 2. State Notation Correction
+
+In imported explainers, system state is sometimes represented ambiguously or without strict equivalence bindings.
+
+The definitive and only recognized notation for a system state within TAS is:
+
+$$ S = (O, \Gamma) $$
+
+Where:
+* **$S$** is the fully authenticated system state.
+* **$O$** is the observable operational reality (the object or data structure).
+* **$\Gamma$** is the cryptographic proof of its unbroken topological lineage (the trace/receipt).
+
+Under Axiom P0 (Equivalence), an operational state ($O$) does not instantiate without its corresponding proof ($\Gamma$). Any document representing state without explicit linkage to its lineage proof is utilizing deprecated, probabilistic notation and must be interpreted through the lens of this erratum.
+
+## 3. Parent Relationship Definitions
+
+The architectural implementation strictly enforces two separate, mathematically distinct parent links within the directed acyclic graph (DAG) of state transitions. Imported explainers that conflate these relationships into a generic "parent" concept are incorrect.
+
+The implementation exclusively uses:
+
+### A. The Operational Parent (`operational-parent`)
+The `operational-parent` link establishes the direct execution lineage. It answers the question: *What prior state was functionally mutated to produce the current state?* It provides the deterministic continuity required by the execution pipeline.
+
+### B. The Evidence Parent (`evidence-parent`)
+The `evidence-parent` link establishes the cryptographic authorization lineage. It answers the question: *Which verified actor, operating under what explicit scope, authorized the mutation?* It anchors the action to the HumanAPI Key and the Refusal Gate.
+
+Both links must be demonstrably valid for a state transition to be accepted by the Sovereign Kernel Verification Protocol (SKVP). Conflation of these two distinct linkages results in a mathematically void state.
