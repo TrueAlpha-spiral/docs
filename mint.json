@@ -92,7 +92,8 @@
         "architecture/the-lock",
         "architecture/operational-mechanics",
         "architecture/tas-gate",
-        "architecture/institutional-layer"
+        "architecture/institutional-layer",
+        "architecture/erratum-state-notation"
       ]
     },
     {
